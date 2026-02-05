@@ -1,12 +1,4 @@
 <script setup>
-import { ref } from 'vue';
-
-const keyword = ref('');
-
-const search = () => {
-  console.log('검색어:', keyword.value);
-};
-
 </script>
 
 <template>
@@ -25,5 +17,30 @@ const search = () => {
 </template>
 
 <style scoped>
+header {
+  padding: 20px;
+  border-bottom: 1px solid #eaeaea;
+  text-align: center;
+}
 
+header a {
+  text-decoration: none;
+  color: #222;
+  font-size: 20px;
+}
+
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+  border-top: 1px solid #eaeaea;
+}
 </style>

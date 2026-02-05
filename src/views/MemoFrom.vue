@@ -6,6 +6,7 @@ import { useRouter, useRoute } from 'vue-router';
 const router = useRouter();
 const route = useRoute();
 const state = reactive ({
+  mode : ' 등록',
   memo : {
     id : 0,
     title : '',
@@ -37,6 +38,7 @@ const submit = async () => {
 
 onMounted (async () => {
   if(route.params.id){
+    state.mode = ' 수정';
     const id = route.params.id;
     state.memo = await httpService.findById(id);
   }
@@ -52,11 +54,53 @@ onMounted (async () => {
 <div>
     <label>내용: <textarea v-model="state.memo.contents"></textarea></label>
 </div>
-<div>
-    <button @click="submit">저장</button>
+<div class="btn-wrap">
+  <button @click="submit">저장</button>
 </div>
 </template>
 
 <style scoped>
+h3 {
+  margin-bottom: 20px;
+}
 
+div {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 16px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-wrap button {
+  background-color: #222;
+}
+
+.btn-wrap button:hover {
+  background-color: #000;
+}
 </style>

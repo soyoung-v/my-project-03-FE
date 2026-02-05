@@ -19,13 +19,18 @@ class HttpService {
     return res.data;
   }
 
+  async findSearch(params){
+    const res = await axios.get(`${this.#url}/search`,{params});
+    return res.data;
+  }
+
   async update(params){
     const res = await axios.put(this.#url,params);
     return res.data;
   }
 
-  async delete(params){
-    const res = await axios.delete(this.#url,{params});
+  async delete(id){
+    const res = await axios.delete(`${this.#url}/${id}`);
     return res.data;
   }
 
