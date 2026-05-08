@@ -1,38 +1,107 @@
-# memo-fe
+# Simple Memo Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Simple Memo는 초기 CRUD 학습을 위해 만든 메모장 프론트엔드 프로젝트입니다.
 
-## Recommended IDE Setup
+Vue 3와 Vue Router, Axios를 사용해 메모 목록 조회, 상세 조회, 작성, 수정, 삭제, 검색 요청 흐름을 화면에서 다루는 것을 목표로 구성했습니다.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+이 프로젝트는 프론트엔드 단독으로 전체 기능이 동작하지 않습니다.  
+메모 데이터를 조회하거나 저장하려면 Spring Boot 백엔드 서버와 MySQL DB가 함께 실행되어 있어야 합니다.
 
-## Recommended Browser Setup
+## 기술 스택
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue 3
+- Vite
+- Vue Router
+- Axios
+- CSS
 
-## Customize configuration
+## 주요 기능
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- 메모 목록 조회 화면
+- 메모 상세 조회 화면
+- 메모 작성 화면
+- 메모 수정 화면
+- 메모 삭제 요청
+- 메모 검색 요청
+- Vue Router 기반 화면 이동
+- Axios 기반 REST API 연동
+- 제목 / 내용 필수 입력 검증
 
-## Project Setup
+## 화면 구성
 
-```sh
+| 화면 | 설명 |
+|---|---|
+| 메모 목록 화면 | 전체 메모 목록 조회, 검색 요청, 상세 화면 이동 |
+| 메모 작성 화면 | 제목과 내용 입력 후 메모 등록 |
+| 메모 수정 화면 | 기존 메모 내용 조회 후 수정 |
+| 메모 상세 화면 | 메모 상세 내용 조회, 수정 화면 이동, 삭제 요청 |
+
+## API 연동 구조
+
+프론트엔드는 백엔드 REST API를 호출하는 구조입니다.
+
+| Method | URL | 설명 |
+|---|---|---|
+| GET | `/memo` | 메모 목록 조회 |
+| GET | `/memo/{id}` | 메모 상세 조회 |
+| GET | `/memo/search` | 메모 검색 요청 |
+| POST | `/memo` | 메모 작성 |
+| PUT | `/memo` | 메모 수정 |
+| DELETE | `/memo/{id}` | 메모 삭제 |
+
+기본 백엔드 API 주소는 다음과 같습니다.
+
+```text
+http://localhost:8080
+```
+
+## 실행 방법
+
+### 1. 패키지 설치
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 2. 개발 서버 실행
 
-```sh
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+브라우저에서 로컬 개발 서버 주소로 접속해 확인할 수 있습니다.
 
-```sh
-npm run build
+```text
+http://localhost:5173
 ```
+
+### 3. 백엔드 서버 실행
+
+전체 CRUD 기능을 확인하려면 Spring Boot 백엔드 서버가 함께 실행되어 있어야 합니다.
+
+```text
+Backend: http://localhost:8080
+Frontend: http://localhost:5173
+```
+
+## 프로젝트 구조
+
+```text
+src/
+├── router/          # 화면 라우팅 설정
+├── services/        # Axios API 요청 함수
+├── views/           # 목록, 작성, 수정, 상세 화면
+├── App.vue
+└── main.js
+```
+
+프로젝트 구조는 실제 파일명에 맞게 필요한 경우 조정합니다.
+
+## 참고 사항
+
+- 이 프로젝트는 초기 CRUD 학습용 로컬 프로젝트입니다.
+- 프론트엔드 단독으로는 전체 CRUD 기능이 동작하지 않습니다.
+- Spring Boot 서버와 MySQL DB가 함께 실행되어야 정상적으로 확인할 수 있습니다.
+- 로그인, 회원가입, JWT 인증, 권한 관리 기능은 포함하지 않습니다.
+- 실서비스 수준의 예외 처리, 인증, 배포 기능은 포함하지 않습니다.
+- 메모 CRUD 흐름과 프론트엔드-백엔드 연동 구조를 확인하는 데 중점을 둔 프로젝트입니다.
